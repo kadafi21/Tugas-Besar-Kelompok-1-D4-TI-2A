@@ -14,4 +14,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		controller: 'LoginCtrl'
 	})
 
+	.state('app.home', {
+		url: '/home',
+		views: {
+			'menuContent': {
+				templateUrl: 'views/pages/home.html',
+				controller: 'HomeCtrl'
+			}
+		}
+	})
+
 })
