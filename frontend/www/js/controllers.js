@@ -101,3 +101,21 @@ app.controller('HomeCtrl', function ($scope, $state, kategoriService) {
 		$state.go('app.home');
 	};
 })
+
+app.controller('HotListCtrl', function ($scope, $state, produkService) {
+	$scope.title = "Toko Online";
+
+	$scope.showData = function () {
+		produkService.getAllhotlist().success(function (data) {
+			$scope.produk = data;
+			$scope.entryLimit = "5";
+		}).finally(function () {
+			$scope.$broadcast('scroll.refreshComplete');
+		});
+	};
+	$scope.showData();
+
+	$scope.reload = function () {
+		$state.go('app.hotlist');
+	};
+})
