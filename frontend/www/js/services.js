@@ -10,6 +10,15 @@ app.factory('kategoriService', function ($http) {
 	};
 })
 
+app.factory('produkService', function ($http) {
+	var baseUrl = 'http://localhost/webservice/server/produk/';
+	return {
+		getAllhotlist: function () {
+			return $http.get(baseUrl + 'select_hotlist.php');
+		},
+	};
+})
+
 app.service('AuthService', function ($http) {
 	var LOCAL_TOKEN_KEY = 'yourTokenKey';
 	var username = '';
