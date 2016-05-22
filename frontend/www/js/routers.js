@@ -24,4 +24,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 
+	.state('app.hotlist', {
+		url: '/hotlist',
+		views: {
+			'menuContent': {
+				templateUrl: 'views/pages/hotlist.html',
+				controller: 'HotListCtrl'
+			}
+		}
+	})
+
 })
