@@ -1,5 +1,27 @@
 var app = angular.module('App.services', [])
 
+app.factory('customerService', function ($http, AuthService) {
+	var baseUrl = 'http://localhost/webservice/server/customer/';
+	return {
+		getIdcustomer: function () {
+			return $http.get(baseUrl + 'select_id_customer.php?customer_username=' + AuthService.username());
+		},
+		createcustomer: function (customer) {
+			return $http.post(baseUrl + 'insert_customer.php', customer, {
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
+				}
+			});
+		},
+		updatecustomer: function (data) {
+			return $http.post(baseUrl + 'update_customer.php', data, {
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'
+				}
+			});
+		}
+	};
+})
 
 app.factory('kategoriService', function ($http) {
 	var baseUrl = 'http://localhost/webservice/server/kategori/';
