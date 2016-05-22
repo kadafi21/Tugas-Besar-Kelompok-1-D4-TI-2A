@@ -1,0 +1,38 @@
+<ion-view view-title="{{ title }}">
+	<ion-nav-buttons side="left">
+		<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+		</button>
+	</ion-nav-buttons>
+	<ion-tabs class="tabs-striped tabs-top tabs-background-balanced tabs-color-light tabs-fullwidth">
+		<a class="tab-item" href="#/app/home">
+   			Beranda
+		</a>
+		<a class="tab-item active" href="#/app/hotlist">
+		    Hot List
+		</a>
+	</ion-tabs>
+	<ion-content class="has-tabs-top bg-gray">
+		<section class="hotlist">
+			<div class="row">
+				<div class="col col-100 panel-bg-cyan-100" ng-repeat="data in produk | limitTo:entryLimit ">
+					<a href="#/app/produk/detailproduk/{{ data.produk_id }}">
+						<div class="produk-img">
+							<img src="img/produk/{{ data.produk_gambar }}">
+						</div>
+						<div class="produk-kategori">
+							<span class="text-black">{{ data.kategori_nama }}</span>
+						</div>
+						<div class="produk-bottom">
+							<div class="produk-name">
+								<span class="text-balanced">{{ data.produk_nama }}</span>
+							</div>
+							<div class="produk-harga">
+								<span class="text-gray-300">Harga : </span><span class="text-gray">Rp. {{ data.produk_harga }},00</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+	</ion-content>
+</ion-view>
