@@ -54,5 +54,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			}
 		}
 	})
+	
+	.state('app.produk', {
+		url: '/produk/:kategoriId',
+		views: {
+			'menuContent': {
+				templateUrl: 'views/pages/produk.html',
+				controller: 'ProdukCtrl'
+			}
+		}
+	})
 
 })
