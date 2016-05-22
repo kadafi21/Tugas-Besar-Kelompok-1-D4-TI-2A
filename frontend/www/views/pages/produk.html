@@ -1,0 +1,66 @@
+<ion-view>
+	<ion-nav-bar class="bar-stable bar-balanced">
+		<ion-nav-back-button>
+		</ion-nav-back-button>
+		<ion-nav-buttons side="left">
+			<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+			</button>
+		</ion-nav-buttons>
+		<ion-nav-buttons side="right">
+			<button class="button button-icon icon ion-ios-search"></button>
+			<div class="search" ng-repeat="data in produk | limitTo:limit1">
+				<input ng-model="search.searchText" ng-change="filter()" type="text" placeholder="Cari di semua {{ data.kategori_nama }}" />
+			</div>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+
+	<ion-content class="bg-gray">
+		<ion-breadcrumb>
+			<section class="breadcrumb bg-white">
+				<div class="row" ng-repeat="data in produk | limitTo:limit1">
+					<i class="ion-arrow-right-b"></i>Kategori {{ data.kategori_nama }}
+				</div>
+			</section>
+			<section class="breadcrumb bg-gray">
+				<div class="row">
+					<div class="breadcrumb-title">{{ title }}</div>
+				</div>
+			</section>
+		</ion-breadcrumb>
+		<section class="produk">
+			<div class="row">
+				<div class="col col-100">
+					<div class="panel-bg-white padding-5" ng-if="search.searchText" ng-show="filtered.length > 0">
+						<span class="filtered-length text-gray">Hasil Pencarian <span class="text-red">{{ search.searchText }}</span> : {{ filtered.length }} {{ title }}</span>
+					</div>
+					<div class="panel-bg-white padding-5 center" ng-if="search.searchText" ng-show="filtered.length == 0">
+						<span class="filtered-length text-gray">Pencarian {{ title }} tidak ditemukan</span>
+					</div>
+				</div>
+				<div class="col col-50" ng-repeat="data in filtered = (produk | filter:search.searchText | orderBy : predicate :reverse) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+					<a href="#/app/produk/detailproduk/{{ data.produk_id }}">
+						<div class="panel-bg-white">
+							<div class="produk-img">
+								<img src="img/produk/{{ data.produk_gambar }}">
+							</div>
+							<div class="produk-nama">
+								<span class="text-balanced">{{ data.produk_nama }}</span>
+							</div>
+							<div class="produk-harga">
+								<span class="text-red">Rp. {{ data.produk_harga }}</span>
+							</div>
+							<div class="produk-customer">
+								<span class="text-gray">{{ data.produk_nama }}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col col-100 center" ng-show="filtered.length > 0">
+					<a href="">
+						<div pagination="" page="currentPage" on-select-page="setPage(page)" boundary-links="true" total-items="filteredItems" items-per-page="entryLimit" class="pagination-small" previous-text="&laquo;" next-text="&raquo;" ng-class="'{{ breadcrumbcolor }}'"></div>
+					</a>
+				</div>
+			</div>
+		</section>
+	</ion-content>
+</ion-view>
