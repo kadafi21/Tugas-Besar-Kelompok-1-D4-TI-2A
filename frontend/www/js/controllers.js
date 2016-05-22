@@ -151,3 +151,36 @@ app.controller('UpdateProfileCtrl', function ($scope, $state, $window, customerS
 		});
 	}
 })
+
+app.controller('ProdukCtrl', function ($scope, $stateParams, $timeout, produkService) {
+	$scope.title = "Produk";
+
+	$scope.showDataId = function () {
+		produkService.getIdkategori($stateParams.kategoriId).success(function (data) {
+			$scope.produk = data;
+			$scope.limit1 = "1";
+			$scope.currentPage = 1; //current page
+			$scope.entryLimit = "4"; //max no of items to display in a page
+			$scope.filteredItems = $scope.produk.length; //Initially for no filter  
+			$scope.totalItems = $scope.produk.length;
+			$scope.search = {};
+			$scope.search.searchText = '';
+		});
+	};
+	$scope.showDataId();
+
+	$scope.setPage = function (pageNo) {
+		$scope.currentPage = pageNo;
+	};
+	$scope.filter = function () {
+		$timeout(function () {
+			$scope.filteredItems = $scope.filtered.length;
+		}, 10);
+	};
+	$scope.predicate = 'produk_post';
+	$scope.reverse = true;
+	$scope.order = function (predicate) {
+		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+		$scope.predicate = predicate;
+	};
+})
