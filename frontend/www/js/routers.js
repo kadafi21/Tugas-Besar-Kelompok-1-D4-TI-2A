@@ -43,5 +43,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			}
 		}
 	})
+	
+	
+	.state('app.updateprofile', {
+		url: '/profile/updateprofile',
+		views: {
+			'menuContent': {
+				templateUrl: 'views/pages/updateprofile.html',
+				controller: 'UpdateProfileCtrl'
+			}
+		}
+	})
 
 })
