@@ -38,6 +38,12 @@ app.factory('produkService', function ($http) {
 		getAllhotlist: function () {
 			return $http.get(baseUrl + 'select_hotlist.php');
 		},
+		getIdkategori: function (kategoriId) {
+			return $http.get(baseUrl + 'select_id_kategori.php?kategori_id=' + kategoriId);
+		},
+		getIdproduk: function (produkId) {
+			return $http.get(baseUrl + 'select_id_produk.php?produk_id=' + produkId);
+		},
 	};
 })
 
