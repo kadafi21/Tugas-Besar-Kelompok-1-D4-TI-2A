@@ -34,4 +34,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 
+	.state('app.profile', {
+		url: '/profile',
+		views: {
+			'menuContent': {
+				templateUrl: 'views/pages/profile.html',
+				controller: 'ProfileCtrl'
+			}
+		}
+	})
+
 })
